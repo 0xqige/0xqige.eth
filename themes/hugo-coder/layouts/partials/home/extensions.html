@@ -1,0 +1,130 @@
+<canvas id="canvas" style="float: auto"></canvas>
+<style>
+  canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    opacity: 0.8;
+  }
+</style>
+<script>
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  class Light {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.radius = 5;
+      this.vx = Math.random() * 10 - 5;
+      this.vy = Math.random() * 10 - 5;
+    }
+
+    draw() {
+      const gradient = ctx.createRadialGradient(
+        this.x,
+        this.y,
+        0,
+        this.x,
+        this.y,
+        this.radius
+      );
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    move() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < 0 || this.x > canvas.width) {
+        this.vx = -this.vx;
+      }
+
+      if (this.y < 0 || this.y > canvas.height) {
+        this.vy = -this.vy;
+      }
+    }
+  }
+
+  const light = new Light(canvas.width / 2, canvas.height / 2);
+
+  function reflectPoint(x, y, angle) {
+    const dx = Math.cos(angle);
+    const dy = Math.sin(angle);
+
+    let t = 0;
+
+    if (dx !== 0) {
+      t = (canvas.width - x) / dx;
+      if (t < 0) {
+        t = x / -dx;
+      }
+    } else if (dy !== 0) {
+      t = (canvas.height - y) / dy;
+      if (t < 0) {
+        t = y / -dy;
+      }
+    }
+
+    return { x: x + t * dx, y: y + t * dy };
+  }
+
+  function getColor(index) {
+    const colors = [
+      "red",
+      "orange",
+      "yellow",
+      "green",
+      "blue",
+      "indigo",
+      "violet",
+    ];
+    return colors[index % colors.length];
+  }
+
+  function drawRay(angle, index) {
+    const x2 = light.x + Math.cos(angle) * canvas.width;
+    const y2 = light.y + Math.sin(angle) * canvas.height;
+    const reflectionPoint = reflectPoint(light.x, light.y, angle);
+    const color = getColor(index);
+
+    ctx.beginPath();
+    ctx.moveTo(light.x, light.y);
+    ctx.lineTo(reflectionPoint.x, reflectionPoint.y);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+    ctx.closePath();
+
+    const reflectedAngle = angle + Math.PI;
+    const x3 = reflectionPoint.x + Math.cos(reflectedAngle) * canvas.width;
+    const y3 = reflectionPoint.y + Math.sin(reflectedAngle) * canvas.height;
+
+    ctx.beginPath();
+    ctx.moveTo(reflectionPoint.x, reflectionPoint.y);
+    ctx.lineTo(x3, y3);
+    ctx.strokeStyle = color;
+    ctx.stroke();
+    ctx.closePath();
+  }
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    light.draw();
+    light.move();
+
+    for (let i = 0; i < 7; i++) {
+      drawRay(((Math.PI * 2) / 7) * i, i);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
