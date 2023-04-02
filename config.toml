@@ -1,5 +1,5 @@
 baseURL = "https://0xqige.eth.limo"
-defaultContentLanguage = "en"
+defaultContentLanguage = "zh-cn"
 enableEmoji = true
 languageCode = "en"
 paginate = 20
@@ -166,8 +166,18 @@ name = "About"
 url = "about.html"
 weight = 1
 
+[[languages.zh-cn.menu.main]]
+name = "关于"
+url = "about.html"
+weight = 1
+
 [[languages.en.menu.main]]
 name = "Blog"
+url = "posts.html"
+weight = 2
+
+[[languages.zh-cn.menu.main]]
+name = "文章"
 url = "posts.html"
 weight = 2
 
@@ -176,11 +186,21 @@ name = "Projects"
 url = "projects.html"
 weight = 3
 
+[[languages.zh-cn.menu.main]]
+name = "项目"
+url = "projects.html"
+weight = 3
+
 [[languages.en.menu.main]]
 name = "Contact"
 url = "contact.html"
 weight = 5
 
-# [languages.pt-br]
-# languageName = ":brazil:"
-# title = "João Ninguém"
+[[languages.zh-cn.menu.main]]
+name = "联系我"
+url = "contact.html"
+weight = 5
+
+[languages.zh-cn]
+languageName = ":cn:"
+title = "中文"

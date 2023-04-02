@@ -1,8 +1,8 @@
 
 +++
 date = 2023-03-26T23:48:10+08:00
-title = "About"
-description = "about Seven 七哥"
+title = "关于七哥"
+description = "关于 Seven 七哥"
 slug = ""
 authors = []
 tags = []
@@ -11,11 +11,10 @@ externalLink = ""
 series = []
 +++
 
-Focused on researching DeFi and AA wallets, Seven (七哥) promotes the development of cryptocurrencies and blockchain technology.
+专注于研究DeFi和AA钱包，促进加密货币和区块链技术的发展。
 
-Seven, a passionate and innovative IT engineer, is the founder of TryDAO. He has extensive technical experience and in-depth knowledge of blockchain technology and is skilled in coding and solving technical problems.
+七哥，一个充满激情和创新的IT工程师，是 Kash.Space 的创始人。拥有丰富的技术经验和对区块链技术的深入了解，擅长编码和解决技术问题。
 
-With more than 7 years of experience in the blockchain industry, Seven has participated in the development of several blockchain projects. He has a wealth of experience in blockchain project development and a deep understanding of the industry.
+在区块链行业拥有超过7年的经验，参与了多个区块链项目的开发。拥有丰富的区块链项目开发经验和对行业的深刻理解。
 
-
- [contact me]({{<ref contact.md>}})
+[联系我]({{<ref contact.md>}})
